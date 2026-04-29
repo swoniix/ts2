@@ -10,7 +10,7 @@ class LinearEquation extends Equation
         super()
     }
     solve(): number[]{
-        if(this.a ===0) return[]
+        if(this.a === 0) return[]
         return[-this.b/this.a]
     }
  }
@@ -93,11 +93,11 @@ class Square extends Shape{
     {
     constructor(private x: number, private y:number,private radius: number)
     {
-        super();
+        super()
     }
     show(): void
     {
-        console.log(`Rectangle: (${this.x},${this.y}), Radius ${this.radius} `)
+        console.log(`Circule: (${this.x},${this.y}), Radius ${this.radius} `)
     }
     save():string
     {
@@ -109,6 +109,44 @@ class Square extends Shape{
         this.x = Number(parts[0])
         this.y = Number(parts[1])
         this.radius = Number(parts[2])
-        console.log('Rectangle data has been loaded!')
+        console.log('Circule data has been loaded!')
     }
 }
+class Elipse extends Shape
+{
+    constructor(private x: number, private y: number, private height: number, private width: number)
+    {
+        super()
+    }
+    show(): void
+    {
+        console.log(`Elipse: (${this.x},${this.y}), Height: ${this.height}, Width: ${this.width} `)
+    }
+    save(): string
+    {
+        return `(${this.x},${this.y}),${this.height},${this.width}`
+    }
+    load(data: string): void
+    {
+        const parts = data.split(' ')
+        this.x = Number(parts[0])
+        this.y = Number(parts[1])
+        this.height = Number(parts[2])
+        this.width = Number(parts[3])
+        console.log('Elipse data has been loaded!')
+    }
+}
+const shapes: Shape[] = [
+    new Square(5, 8, 12),
+    new Rectangle(12, 20 , 56, 32),
+    new Circule(25, 18, 67),
+    new Elipse(4, 5, 12, 16)
+]
+shapes.forEach((shape, index) => {
+    console.log(`Shape №${index + 1}: `);
+    shape.show();
+})
+
+let data: string = shapes[1].save();
+shapes[1].load("1, 2, 3, 4");
+shapes[1].show();
