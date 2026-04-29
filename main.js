@@ -42,3 +42,5 @@ console.log(N.solve());
 const M = new QuadraticEquation(1, -3, 2);
 console.log(M.solve());
 //2
+class Shape {
+}
