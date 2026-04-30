@@ -65,7 +65,7 @@ class Square extends Shape {
         this.x = Number(parts[0]);
         this.y = Number(parts[1]);
         this.size = Number(parts[2]);
-        console.log('Square data has been loaded!');
+        console.log('Square data has been loaded\n');
     }
 }
 class Rectangle extends Shape {
@@ -92,7 +92,7 @@ class Rectangle extends Shape {
         this.y = Number(parts[1]);
         this.height = Number(parts[2]);
         this.width = Number(parts[3]);
-        console.log('Rectangle data has been loaded!');
+        console.log('Rectangle data has been loaded\n');
     }
 }
 class Circule extends Shape {
@@ -106,7 +106,7 @@ class Circule extends Shape {
         this.radius = radius;
     }
     show() {
-        console.log(`Rectangle: (${this.x},${this.y}), Radius ${this.radius} `);
+        console.log(`Circule: (${this.x},${this.y}), Radius ${this.radius} `);
     }
     save() {
         return `(${this.x},${this.y}),${this.radius}`;
@@ -116,6 +116,46 @@ class Circule extends Shape {
         this.x = Number(parts[0]);
         this.y = Number(parts[1]);
         this.radius = Number(parts[2]);
-        console.log('Rectangle data has been loaded!');
+        console.log('Circule data has been loaded\n');
     }
 }
+class Elipse extends Shape {
+    x;
+    y;
+    height;
+    width;
+    constructor(x, y, height, width) {
+        super();
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.width = width;
+    }
+    show() {
+        console.log(`Elipse: (${this.x},${this.y}), Height: ${this.height}, Width: ${this.width} `);
+    }
+    save() {
+        return `(${this.x},${this.y}),${this.height},${this.width}`;
+    }
+    load(data) {
+        const parts = data.split(' ');
+        this.x = Number(parts[0]);
+        this.y = Number(parts[1]);
+        this.height = Number(parts[2]);
+        this.width = Number(parts[3]);
+        console.log('Elipse data has been loaded\n');
+    }
+}
+const shapes = [
+    new Square(5, 8, 12),
+    new Rectangle(12, 20, 56, 32),
+    new Circule(25, 18, 67),
+    new Elipse(4, 5, 12, 16)
+];
+shapes.forEach((shape, index) => {
+    console.log(`Shape №${index + 1}: `);
+    shape.show();
+});
+let data = shapes[1].save();
+shapes[1].load("1, 2, 3, 4");
+shapes[1].show();
